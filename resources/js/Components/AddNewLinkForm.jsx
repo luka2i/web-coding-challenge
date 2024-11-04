@@ -11,7 +11,9 @@ export default function AddNewLinkForm({appUrl}) {
         url: '',
     });
 
+    const [copied, setCopied] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [generatedUrl, setGeneratedUrl] = useState('');
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -21,10 +23,21 @@ export default function AddNewLinkForm({appUrl}) {
             preserveScroll: true,
             onSuccess: (response) => {
                 reset();
-                console.log(response);
+                setGeneratedUrl(response?.props?.flash?.success?.slug);
                 setShowSuccess(true);
+                setCopied(false);
             },
         });
+    };
+
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(generatedUrl);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
     };
 
     return (
@@ -96,6 +109,20 @@ export default function AddNewLinkForm({appUrl}) {
                             <div className="flex items-center gap-2 text-green-700 dark:text-green-300">
 
                                 <span className="font-medium">Link created successfully!</span>
+                            </div>
+                            <div className="mt-3 flex flex-col sm:flex-row gap-2">
+                                <div className="flex-1 min-w-0">
+                                    <TextInput
+                                        readOnly
+                                        value={generatedUrl}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white/50 dark:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    />
+                                </div>
+                                <PrimaryButton
+                                    onClick={copyToClipboard}
+                                >
+                                    {copied ? 'Copied!' : 'Copy'}
+                                </PrimaryButton>
                             </div>
                         </div>
                     )}
