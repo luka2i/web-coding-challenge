@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the user's links.
+     */
+    public function links()
+    {
+        return $this->hasMany(Link::class);
+    }
 }
