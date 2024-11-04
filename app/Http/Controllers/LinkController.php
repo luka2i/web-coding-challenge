@@ -32,4 +32,16 @@ class LinkController extends Controller
             'url' => $link->url
         ]);
     }
+
+    /**
+     * Redirect to the specified link.
+     */
+    public function redirect($slug)
+    {
+        $link = Link::where('slug', $slug)->firstOrFail();
+
+        $link->visit();
+
+        return redirect($link->url);
+    }
 }

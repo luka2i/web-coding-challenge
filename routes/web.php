@@ -28,3 +28,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::post('/links', [LinkController::class, 'store'])->name('links.store');
+
+Route::get('/{slug}', [LinkController::class, 'redirect'])
+    ->name('links.redirect')
+    ->where('slug', '[A-Za-z0-9-]{4,}');
