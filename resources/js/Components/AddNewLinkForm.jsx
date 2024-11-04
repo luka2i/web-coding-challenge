@@ -119,7 +119,7 @@ export default function AddNewLinkForm({appUrl}) {
                                     />
                                 </div>
                                 <PrimaryButton
-                                    onClick={copyToClipboard}
+                                    onClick={copyToClipboard} className="justify-center"
                                 >
                                     {copied ? 'Copied!' : 'Copy'}
                                 </PrimaryButton>

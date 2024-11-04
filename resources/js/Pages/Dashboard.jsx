@@ -1,8 +1,9 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Head} from '@inertiajs/react';
 import AddNewLinkForm from "@/Components/AddNewLinkForm.jsx";
+import MyLinks from "@/Components/MyLinks.jsx";
 
-export default function Dashboard({appUrl}) {
+export default function Dashboard({appUrl, links}) {
     return (
         <AuthenticatedLayout
             header={
@@ -13,9 +14,16 @@ export default function Dashboard({appUrl}) {
         >
             <Head title="Dashboard"/>
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <AddNewLinkForm appUrl={appUrl}/>
+            <div className="mx-auto max-w-7xl flex min-h-screen flex-col max-lg:flex-col-reverse lg:flex-row pb-5">
+                <div className="top-0 mt-6 flex-1 text-white">
+                    <div className="mx-auto sm:px-6 lg:px-8">
+                        <MyLinks links={links} appUrl={appUrl}/>
+                    </div>
+                </div>
+                <div className="flex-1 sticky top-0 z-50 mt-6 lg:block">
+                    <div className="sticky mr-8 top-6 flex-col gap-y-4 lg:min-h-[calc(100vh-150px)]">
+                        <AddNewLinkForm appUrl={appUrl}/>
+                    </div>
                 </div>
             </div>
         </AuthenticatedLayout>

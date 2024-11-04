@@ -15,6 +15,7 @@ class LinkController extends Controller
     public function index()
     {
         return Inertia::render('Dashboard', [
+            'links' => auth()->user()->links()->latest()->get(),
             'appUrl' => config('app.url'),
         ]);
     }
