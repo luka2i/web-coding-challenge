@@ -8,7 +8,6 @@ use Inertia\Inertia;
 
 class LinkController extends Controller
 {
-
     /**
      * Show users links
      */
@@ -27,8 +26,6 @@ class LinkController extends Controller
     {
         $link = new Link();
         $link->url = $request->url;
-
-        $request->session()->put('showWelcome', true);
 
         $link->slug = $request->filled('slug')
             ? $request->slug

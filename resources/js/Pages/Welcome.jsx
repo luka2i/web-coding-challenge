@@ -67,7 +67,7 @@ export default function Welcome({auth, appUrl}) {
                             <AddNewLinkForm appUrl={appUrl}/>
                         </main>
                         <footer className="py-16 text-center text-sm text-black dark:text-white/70">
-                            Web Codding Challenge
+                            Web Coding Challenge
                         </footer>
                     </div>
                 </div>
