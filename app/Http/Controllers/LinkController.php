@@ -4,9 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Link;
 use App\Http\Requests\StoreLinkRequest;
+use Inertia\Inertia;
 
 class LinkController extends Controller
 {
+
+    /**
+     * Show users links
+     */
+    public function index()
+    {
+        return Inertia::render('Dashboard', [
+            'appUrl' => config('app.url'),
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
